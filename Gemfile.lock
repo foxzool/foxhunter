@@ -37,6 +37,7 @@ GEM
       debug_inspector (>= 0.0.1)
     bootstrap-sass (3.2.0.0)
       sass (~> 3.2)
+    bower-rails (0.7.3)
     builder (3.2.2)
     capistrano (3.0.1)
       i18n
@@ -279,6 +280,7 @@ DEPENDENCIES
   better_errors
   binding_of_caller
   bootstrap-sass
+  bower-rails (~> 0.7.3)
   capistrano (~> 3.0.1)
   capistrano-bundler
   capistrano-rails (~> 1.1.0)
