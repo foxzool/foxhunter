@@ -19,6 +19,7 @@ gem 'pundit'
 gem 'slim-rails'
 gem "bower-rails", "~> 0.7.3"
 group :development do
+  gem 'simplecov'
   gem 'better_errors'
   gem 'binding_of_caller', :platforms=>[:mri_21]
   gem 'capistrano', '~> 3.0.1'
