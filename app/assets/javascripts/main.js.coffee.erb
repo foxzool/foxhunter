@@ -1,0 +1,46 @@
+# Place all the behaviors and hooks related to the matching controller here.
+# All this logic will automatically be available in application.js.
+# You can use CoffeeScript in this file: http://coffeescript.org/
+#= require_self
+#= require_tree ./services/global
+#= require_tree ./services/main
+#= require_tree ./filters/global
+#= require_tree ./filters/main
+#= require_tree ./controllers/global
+#= require_tree ./controllers/main
+#= require_tree ./directives/global
+#= require_tree ./directives/main
+"use strict"
+app = angular.module("FoxHunter", ['ngResource', 'ngRoute'])
+
+
+
+app.config ["$httpProvider", ($httpProvider) ->
+    token = $('meta[name=csrf-token]').attr('content')
+    $httpProvider.defaults.headers.common['X-CSRF-Token'] = token
+]
+
+app.config ["$routeProvider", "$locationProvider", ($routeProvider, $locationProvider) ->
+    $locationProvider.html5Mode(true)
+    $routeProvider
+    .when('/issues',
+            {templateUrl: '<%= asset_path('issues/index.html.slim') %>', controller: IssueCtrl})
+    .when('/issues/:id',
+            {templateUrl: '<%= asset_path('issues/show.html.slim') %>', controller: IssueCtrl})
+    .otherwise(redirectTo: '/')
+]
+
+app.factory "Issue", ["$resource", ($resource) ->
+    $resource("/api/issues/:id",
+            {id: "@id"},
+            {
+                create: {method: "POST"}
+                index: {method: "GET", isArray: true}
+                show: {method: "GET", isArray: false}
+                update: {method: "PUT"}
+                destroy: {method: "DELETE"}
+            }
+    )
+]
+
+

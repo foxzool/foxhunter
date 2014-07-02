@@ -1,0 +1,22 @@
+div
+  div ng-controller="IssueCtrl"
+    div
+      .container-fluid
+        .row-fluid
+          .col-md-2
+            | Search:
+            input ng-model="query"
+            | Sort by:
+            select ng-model="orderProp"
+              option value="name" | Alphabetical
+              option value="created_at" | Newest
+            form ng-submit="addIssue()"
+              input type="text" ng-model="newIssue.name"
+              input type="text" ng-model="newIssue.context"
+              input type="submit" value="Add"
+          .col-md-10
+            ul.phones
+              li ng-repeat=('issue in issues | filter:query | orderBy:orderProp')
+                | {{issue.name}}
+                p
+                  | {{issue.context}}
