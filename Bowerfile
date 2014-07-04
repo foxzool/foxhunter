@@ -6,3 +6,4 @@
 asset 'angular'
 asset 'angular-resource'
 asset 'angular-route'
+asset 'underscore'
