@@ -1,0 +1,23 @@
+h1 Listing issues
+
+table
+  thead
+    tr
+      th Name
+      th Context
+      th
+      th
+      th
+
+  tbody
+    - @issues.each do |issue|
+      tr
+        td = issue.name
+        td = issue.context
+        td = link_to 'Show', issue
+        td = link_to 'Edit', edit_issue_path(issue)
+        td = link_to 'Destroy', issue, data: {:confirm => 'Are you sure?'}, :method => :delete
+
+br
+
+= link_to 'New Issue', new_issue_path
